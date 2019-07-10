@@ -1,9 +1,10 @@
 {
-  "name": "AwesomeProject",
+  "name": "awesome-project",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "react-native start",
+    "start:ios": "react-native run-ios",
     "test": "jest",
     "lint": "eslint ."
   },
@@ -17,11 +18,29 @@
     "@react-native-community/eslint-config": "^0.0.5",
     "babel-jest": "^24.8.0",
     "eslint": "^6.0.1",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "husky": ">=1",
     "jest": "^24.8.0",
+    "lint-staged": ">=8",
     "metro-react-native-babel-preset": "^0.55.0",
+    "prettier": "^1.18.2",
     "react-test-renderer": "16.8.6"
   },
   "jest": {
     "preset": "react-native"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn test"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier",
+      "eslint",
+      "git add"
+    ]
   }
 }
